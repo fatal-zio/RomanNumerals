@@ -1,46 +1,38 @@
 using NUnit.Framework;
+using RomanNumerals.Entities;
 using RomanNumerals.Logic;
 
 namespace Tests
 {
     public class Tests
     {
-        [SetUp]
-        public void Setup()
-        {
+        private RomanNumeralEvaluationStrategy _strategy;
 
-        }
+        [SetUp]
+        public void Setup() => _strategy = new RomanNumeralEvaluationStrategy();
 
         [Test]
         public void Translate1990()
         {
-            var evaluator = new RomanNumeralEvaluator();
-
-            Assert.AreEqual("MCMXC", evaluator.Evaluate(1990));
+            Assert.AreEqual("MCMXC", new RomanNumeral(1990, _strategy).Text);
         }
 
         [Test]
         public void Translate2008()
         {
-            var evaluator = new RomanNumeralEvaluator();
-
-            Assert.AreEqual("MMVIII", evaluator.Evaluate(2008));
+            Assert.AreEqual("MMVIII", new RomanNumeral(2008, _strategy).Text);
         }
 
         [Test]
         public void Translate99()
         {
-            var evaluator = new RomanNumeralEvaluator();
-
-            Assert.AreEqual("XCIX", evaluator.Evaluate(99));
+            Assert.AreEqual("XCIX", new RomanNumeral(99, _strategy).Text);
         }
 
         [Test]
         public void Translate47()
         {
-            var evaluator = new RomanNumeralEvaluator();
-
-            Assert.AreEqual("XLVII", evaluator.Evaluate(47));
+            Assert.AreEqual("XLVII", new RomanNumeral(47, _strategy).Text);
         }
     }
 }
