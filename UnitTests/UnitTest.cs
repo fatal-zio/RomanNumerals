@@ -1,3 +1,4 @@
+using System;
 using NUnit.Framework;
 using RomanNumerals.Entities;
 using RomanNumerals.Logic;
@@ -33,6 +34,24 @@ namespace Tests
         public void Translate47()
         {
             Assert.AreEqual("XLVII", new RomanNumeral(47, _strategy).Text);
+        }
+
+        [Test]
+        public void Translate999()
+        {
+            Assert.AreEqual("CMXCIX", new RomanNumeral(999, _strategy).Text);
+        }
+
+        [Test]
+        public void Translate0()
+        {
+            Assert.AreEqual(string.Empty, new RomanNumeral(0, _strategy).Text);
+        }
+
+        [Test]
+        public void TranslateNegative1()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => new RomanNumeral(-1, _strategy));
         }
     }
 }
